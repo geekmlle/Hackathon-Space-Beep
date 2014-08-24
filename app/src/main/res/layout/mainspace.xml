@@ -15,7 +15,8 @@
             android:id="@+id/instructions"
             android:layout_column="0"
             android:text="Tap to start"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:textAlignment="center" />
     </TableRow>
 
     <TableRow

@@ -42,22 +42,6 @@ public class SpaceBeep extends Activity {
                 Button buttons = (Button) stub.findViewById(R.id.button5);
                  buttons = (Button) stub.findViewById(R.id.button2);
 
-                /*buttons.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        if(isMember()) {
-                            //RegisterCheck rgc = new RegisterCheck();
-                            //dont register
-                        } else {
-
-
-                        }
-
-                    }
-                });*/
-                //textView.setText("hello");
-
             }
         });
     }

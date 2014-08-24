@@ -48,12 +48,12 @@ public class Space extends Activity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 addRandom();
-                instructionsTV.setText("Watch closely!");
+                instructionsTV.setText("Your Turn!");
                 recursion(0);
             }
         }, 1000);
         turn = true;
-        instructionsTV.setText("Your turn!");
+        instructionsTV.setText("Watch Closely!");
         click_counter = 0;
     }
 

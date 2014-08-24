@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SPACE BEEP"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textAlignment="center" />
 
 
     <ImageView

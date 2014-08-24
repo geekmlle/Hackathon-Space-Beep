@@ -25,20 +25,6 @@ public class RegisterCheck extends Activity {
                 mTextView = (TextView) stub.findViewById(R.id.text);
                 Button buttons = (Button) stub.findViewById(R.id.button4);
 
-                /*buttons.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        if(isMember()) {
-                            //RegisterCheck rgc = new RegisterCheck();
-                            //dont register
-                        } else {
-
-                        }
-                    }
-                });
-                //textView.setText("hello");
-                */
 
             }
         });
