@@ -9,30 +9,38 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.DeviceDefault" >
-
         <activity
             android:name=".SpaceBeep"
             android:allowEmbedded="true"
             android:label="SpaceBeep" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Space"
             android:allowEmbedded="true"
             android:label="Space" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".RegisterCheck"
             android:label="RegisterCheck" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Awards"
+            android:label="@string/title_activity_awards" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

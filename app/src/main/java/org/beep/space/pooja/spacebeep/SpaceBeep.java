@@ -53,7 +53,8 @@ public class SpaceBeep extends Activity {
     }
 
     public void buttonRegisterClicked (View target){
-        Intent intent = new Intent(SpaceBeep.this, RegisterCheck.class);
+        Intent intent = new Intent(SpaceBeep.this, Awards.class);
+        intent.putExtra("award_image","0");
         startActivity(intent);
     }
 

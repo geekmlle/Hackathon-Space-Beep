@@ -2,6 +2,8 @@
 package org.beep.space.pooja.spacebeep;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +11,9 @@ import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.NotificationCompat.WearableExtender;
 import java.util.*;
 
 public class Space extends Activity {
@@ -19,12 +24,23 @@ public class Space extends Activity {
     private boolean user_playing = false;
     private boolean turn; //true == user, false == computer //validate user doesn't click while showing sequence
     private int click_counter = 0;
+    private int award = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_space);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("award_image");
+            try{
+                award = Integer.parseInt(value);
+                System.out.println("Space: "+value);
+            }catch(Exception e){
+                award = 0;
+            }
+        }
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
@@ -41,20 +57,93 @@ public class Space extends Activity {
 
 
     private void gameStart(){
-        instructionsTV.setText("");
-        turn = false;
-        //Delay 1 second so user can get the first sequence without missing anything
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                addRandom();
-                instructionsTV.setText("Your Turn!");
-                recursion(0);
+
+        //Level 1 = 2
+        //Level 2 = 5
+        //Level 3 = 10
+        //Level 4 = 15
+        //Level 5 = 20
+        boolean cont = true;
+
+        switch(sequence.size()) {
+
+            case 2: {
+
+                if (award != 1) {
+
+                    Intent intent = new Intent(Space.this, Awards.class);
+                    intent.putExtra("award_image", "1");
+                    startActivity(intent);
+                    cont = false;
+                }
+                cont = true;
+                break;
             }
-        }, 1000);
-        turn = true;
-        instructionsTV.setText("Watch Closely!");
-        click_counter = 0;
+            case 5: {
+
+                if (award != 2) {
+
+                    Intent intent = new Intent(Space.this, Awards.class);
+                    intent.putExtra("award_image", "2");
+                    startActivity(intent);
+                    cont = false;
+                }
+                cont = true;
+                break;
+            }
+            case 10: {
+
+                if (award != 3) {
+                    Intent intent = new Intent(Space.this, Awards.class);
+                    intent.putExtra("award_image", "3");
+                    startActivity(intent);
+                    cont = false;
+                }
+                cont = true;
+                break;
+            }
+            case 15: {
+
+                if (award != 4) {
+                    Intent intent = new Intent(Space.this, Awards.class);
+                    intent.putExtra("award_image", "4");
+                    startActivity(intent);
+                    cont = false;
+                }
+                cont = true;
+                break;
+            }
+            case 20: {
+
+                if (award != 5) {
+                    Intent intent = new Intent(Space.this, Awards.class);
+                    intent.putExtra("award_image", "5");
+                    startActivity(intent);
+                    cont = false;
+                }
+                cont = true;
+                break;
+            }
+
+        }
+
+        if(cont){
+            instructionsTV.setText("");
+            turn = false;
+            //Delay 1 second so user can get the first sequence without missing anything
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    addRandom();
+                    instructionsTV.setText("Your Turn!");
+                    recursion(0);
+                }
+            }, 1000);
+            turn = true;
+            instructionsTV.setText("Watch Closely!");
+            click_counter = 0;
+        }
+
     }
 
     private void gameOver(){
@@ -66,6 +155,7 @@ public class Space extends Activity {
     }
 
     private void showSequence(){
+
         addRandom();
         recursion(0);
     }
@@ -83,7 +173,6 @@ public class Space extends Activity {
                 }else{
                     if(sequence.size()-1 == click_counter){
                         turn = false;
-                        instructionsTV.setText("My turn!");
                         gameStart();
                     }
                     else{
@@ -108,7 +197,6 @@ public class Space extends Activity {
                 }else{
                     if(sequence.size()-1 == click_counter){
                         turn = false;
-                        instructionsTV.setText("My turn!");
                         gameStart();
                     }
                     else{
@@ -133,7 +221,6 @@ public class Space extends Activity {
                 }else{
                     if(sequence.size()-1 == click_counter){
                         turn = false;
-                        instructionsTV.setText("My turn!");
                         gameStart();
                     }
                     else{
@@ -159,7 +246,6 @@ public class Space extends Activity {
                 }else{
                     if(sequence.size()-1 == click_counter){
                         turn = false;
-                        instructionsTV.setText("My turn!");
                         gameStart();
                     }
                     else{
@@ -173,9 +259,13 @@ public class Space extends Activity {
     }
 
     private void addRandom(){
-        Random rand = new Random();
-        sequence.add(rand.nextInt(4)+1);
-        System.out.println("the next button is: "+sequence.get(sequence.size()-1));
+
+                Random rand = new Random();
+                sequence.add(rand.nextInt(4)+1);
+                System.out.println("the next button is: "+sequence.get(sequence.size()-1));
+                //Keep Playing
+
+
     }
 
     private void recursion(int i){

@@ -31,7 +31,8 @@ public class RegisterCheck extends Activity {
     }
 
     public void spaceBeepClicked (View target){
-        Intent intent = new Intent(RegisterCheck.this, org.beep.space.pooja.spacebeep.Space.class);
+        Intent intent = new Intent(RegisterCheck.this, Space.class);
+
         startActivity(intent);
     }
 
