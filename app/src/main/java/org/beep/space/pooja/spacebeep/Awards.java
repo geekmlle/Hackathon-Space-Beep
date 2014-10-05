@@ -2,7 +2,9 @@ package org.beep.space.pooja.spacebeep;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +27,74 @@ public class Awards extends Activity {
         if (extras != null) {
             String value = extras.getString("award_image");
             System.out.println("Awards: "+value);
-            setAward(value);
+            try{
+                int x = Integer.parseInt(value);
+                awards = x;
+
+                Resources resources = getResources();
+
+
+                switch(x){
+                    case 0:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_0);
+                            }
+                        }, 1000);
+                        break;
+                    }
+                    case 1:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_1);
+                            }
+                        }, 1000);
+                        //iv.setImageDrawable(resources.getDrawable(R.drawable.award_1));
+                        break;
+                    }
+                    case 2:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_2);
+                            }
+                        }, 1000);
+                        //iv.setImageDrawable(resources.getDrawable(R.drawable.award_2));
+                        break;
+                    }
+                    case 3:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_3);
+                            }
+                        }, 1000);
+                        break;
+                    }
+                    case 4:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_4);
+                            }
+                        }, 1000);
+                        break;
+                    }
+                    case 5:{
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                iv.setBackgroundResource(R.drawable.award_5);
+                            }
+                        }, 1000);
+                        //iv.setImageDrawable(resources.getDrawable(R.drawable.award_5));
+                        break;
+                    }
+                }
+
+            }catch(Exception e){}
         }
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
@@ -37,40 +106,6 @@ public class Awards extends Activity {
         });
     }
 
-    public void setAward(String value){
-        try{
-            int x = Integer.parseInt(value);
-            awards = x;
-
-            switch(x){
-                case 0:{
-                    iv.setImageResource(R.drawable.award_0);
-                    break;
-                }
-                case 1:{
-                    iv.setImageResource(R.drawable.award_1);
-                    break;
-                }
-                case 2:{
-                    iv.setImageResource(R.drawable.award_2);
-                    break;
-                }
-                case 3:{
-                    iv.setImageResource(R.drawable.award_3);
-                    break;
-                }
-                case 4:{
-                    iv.setImageResource(R.drawable.award_4);
-                    break;
-                }
-                case 5:{
-                    iv.setImageResource(R.drawable.award_5);
-                    break;
-                }
-            }
-
-        }catch(Exception e){}
-    }
 
     public void awardsButtonPlayClicked (View target){
         Intent intent = new Intent(Awards.this, Space.class);
